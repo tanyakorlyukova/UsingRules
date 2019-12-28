@@ -7,7 +7,7 @@ public class SeleniumTest extends LoginFixture {
 
   @Test
   public void test1() {
-    System.out.println("Error message is " + driver.findElement(By.id("spanMessage")).getText());
+    System.out.println("Error message is \"" + driver.findElement(By.id("spanMessage")).getText() + "\"");
   }
 
 }
