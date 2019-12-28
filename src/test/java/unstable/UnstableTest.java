@@ -1,6 +1,6 @@
 package unstable;
 
-import org.junit.Assert;
+import org.junit.Assume;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestRule;
@@ -8,19 +8,15 @@ import org.junit.rules.TestRule;
 public class UnstableTest {
 
     @Rule
-    public TestRule runTwiceRule = new RunTwiceRule();
+    public TestRule runSeveralTimeRule = new RunSeveralTimesRule();
 
-    private static int attempt = 1;
+    private static int attempt = 0;
 
     @Test
-    @Unstable(3)
+    @Unstable(4)    //4 - number of attempts to restart test
     public void unstableTest() {
-        if (attempt == 2) {
-            attempt = 1;
-
-        } else {
-            Assert.fail("Failed on " + (attempt++) + " attempt");
-        }
+        attempt++;
+        Assume.assumeTrue(attempt == 7);   //7 - required number of attempts to restart test
     }
 
 }
